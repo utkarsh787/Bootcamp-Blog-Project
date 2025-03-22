@@ -1,0 +1,21 @@
+
+    .content-container {
+        margin-bottom: 1rem;
+    }
+
+    .content-heading {
+        margin-bottom: 1rem;
+    }
+
+    .content-rte h1, .content-rte h2, .content-rte h3 {
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .content-rte ul, .content-rte ol {
+        padding-left: 1.5rem;
+    }
+
+    .content-rte p:last-child {
+        margin-bottom: 0;
+    }

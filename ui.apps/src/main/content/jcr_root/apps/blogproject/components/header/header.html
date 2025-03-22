@@ -1,0 +1,35 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"/>
+<sly data-sly-call="${clientlib.css @ categories='blogproject.header'}"/>
+
+<!-- Use HeaderModel -->
+<sly data-sly-use.model="com.blogproject.core.models.HeaderModel"/>
+
+<header class="blog-header py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-12 text-center">
+            <a class="blog-header-logo text-dark" >
+                <sly data-sly-test="${model.logoPath}">
+                    <img src="${model.logoPath}" alt="${model.logoAlt}" class="ttn-logo">
+                </sly>
+                <!-- Fallback to display the alt text if no image -->
+                <sly data-sly-test="${!model.logoPath && model.logoAlt}">
+                    <span class="ttn-logo-alt">${model.logoAlt}</span>
+                </sly>
+                ${model.headerText || 'Bootcamp Blog'}
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="nav-scroller py-1 mb-2">
+
+    <nav class="nav d-flex">
+
+        <ul data-sly-list.item="${model.navigation}">
+            <li>
+                <a class="p-2 " href="${item.link || '#'}">${item.text}</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+

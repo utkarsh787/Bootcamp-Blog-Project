@@ -1,0 +1,146 @@
+/* Carousel container */
+.cmp-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1200px; /* Adjust max width if needed */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Slide wrapper */
+.cmp-carouselcontent {
+    display: flex;
+    transition: transform 0.6s ease;
+}
+
+/* Individual slides */
+.cmp-carouselitem {
+    min-width: 100%;
+    box-sizing: border-box;
+    transition: opacity 0.6s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.cmp-carouselitem--active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Carousel image styling */
+.cmp-carouselitem img {
+    width: 100%;
+    height: 325px; /* Match your desired height */
+    object-fit: cover;
+}
+
+/* Caption styling */
+.cmp-carouselitem .carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 15px 20px;
+    text-align: center;
+    border-radius: 5px;
+    max-width: 80%;
+    z-index: 10;
+}
+
+.cmp-carouselitem .carousel-caption h3 {
+    font-size: 24px;
+    margin: 0 0 10px;
+}
+
+.cmp-carouselitem .carousel-caption p {
+    font-size: 16px;
+    margin: 0;
+}
+
+.cmp-carouselitem .carousel-caption a {
+    color: #f1c40f;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.cmp-carouselitem .carousel-caption a:hover {
+    color: #e74c3c;
+}
+
+/* Indicators */
+.cmp-carouselindicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.cmp-carouselindicator {
+    width: 12px;
+    height: 12px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cmp-carouselindicator:hover,
+.cmp-carouselindicator--active {
+    background-color: #007bff; /* Bootstrap blue */
+}
+
+/* Navigation controls */
+.cmp-carousel [data-cmp-hook-carousel="previous"],
+.cmp-carousel [data-cmp-hook-carousel="next"] {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.cmp-carousel [data-cmp-hook-carousel="previous"]:hover,
+.cmp-carousel [data-cmp-hook-carousel="next"]:hover {
+    background: #007bff;
+}
+
+.cmp-carousel [data-cmp-hook-carousel="previous"] {
+    left: 15px;
+}
+
+.cmp-carousel [data-cmp-hook-carousel="next"] {
+    right: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cmp-carouselitem img {
+        height: 200px;
+    }
+
+    .cmp-carouselitem .carousel-caption {
+        padding: 10px 15px;
+    }
+
+    .cmp-carouselitem .carousel-caption h3 {
+        font-size: 18px;
+    }
+
+    .cmp-carouselitem .carousel-caption p {
+        font-size: 14px;
+    }
+}

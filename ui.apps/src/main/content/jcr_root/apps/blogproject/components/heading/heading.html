@@ -1,0 +1,9 @@
+<head data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientLib.all @ categories='blogproject.heading'}"/>
+</head>
+<body>
+<header data-sly-use.heading="com.blogproject.core.models.HeadingModel">
+    <h2 class="blog-post-title">${heading.title}</h2>
+    <p class="blog-post-meta">${heading.createdDate} by <a href="index.html#">${heading.authorName}</a></p>
+</header>
+</body>

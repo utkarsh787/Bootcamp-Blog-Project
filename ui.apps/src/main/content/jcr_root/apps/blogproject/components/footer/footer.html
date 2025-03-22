@@ -1,0 +1,31 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.all @ categories='blogproject.footer'}"/>
+<sly data-sly-use.footer="com.blogproject.core.models.FooterModel"/>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Bootcamp Blog</title>
+</head>
+<body>
+<p class="align-center">
+		<a href="#top">Back to top</a>
+</p>
+<footer class="blog-footer">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="footer__block">
+                <a href="${footer.link1}" aria-label="PwC office locations">HomePage</a>
+                <a href="${footer.link2}" aria-label="PwC office locations">Blogs</a>
+            </div>
+        </div>
+    </div>
+    <p>© 2024 - 2025 TTN Bootcamp. All rights reserved.</p>
+</footer>
+
+
+</body>
+</html>
