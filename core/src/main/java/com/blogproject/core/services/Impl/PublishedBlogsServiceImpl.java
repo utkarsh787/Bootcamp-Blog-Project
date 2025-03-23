@@ -24,14 +24,9 @@ public class PublishedBlogsServiceImpl implements PublishedBlogsService {
             Date createdDate = childPage.getProperties().get("jcr:created", Date.class);
             String formattedDate = sdf.format(createdDate);
 
-            if (monthFilter != null) {
-                String[] splitParam = monthFilter.split(" ");
-                if (splitParam.length == 2) {
-                    String month = splitParam[0];
-                    String year = splitParam[1];
-                    if (!formattedDate.contains(month) || !formattedDate.contains(year)) {
-                        continue;
-                    }
+            if (monthFilter!=null){
+                if(!formattedDate.equals(monthFilter)){
+                    continue;
                 }
             }
 
@@ -49,7 +44,7 @@ public class PublishedBlogsServiceImpl implements PublishedBlogsService {
     }
 
     private String getImagePath(Page childPage) {
-        Resource imageResource = childPage.getContentResource("root/responsivegrid_356875995/image");
+        Resource imageResource = childPage.getContentResource("cq:featuredimage");
 
         if (imageResource != null) {
             // Check if image was uploaded through browse (has file node)

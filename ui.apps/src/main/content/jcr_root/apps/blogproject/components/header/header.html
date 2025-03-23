@@ -1,7 +1,8 @@
+<!-- Make a call to clientlib-->
 <sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"/>
 <sly data-sly-call="${clientlib.css @ categories='blogproject.header'}"/>
 
-<!-- Use HeaderModel -->
+<!-- Make a call to HeaderModel -->
 <sly data-sly-use.model="com.blogproject.core.models.HeaderModel"/>
 
 <header class="blog-header py-3">
@@ -22,13 +23,9 @@
 </header>
 
 <div class="nav-scroller py-1 mb-2">
-
     <nav class="nav d-flex">
-
-        <ul data-sly-list.item="${model.navigation}">
-            <li>
-                <a class="p-2 " href="${item.link || '#'}">${item.text}</a>
-            </li>
+        <ul data-sly-list.navitem="${model.navigation}">
+            <li><a class="p-2 " href="${navitem.link @ context='uri'}.html">${navitem.text}</a></li>
         </ul>
     </nav>
 </div>

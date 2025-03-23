@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Model(
-        adaptables = {SlingHttpServletRequest.class, Resource.class},
+        adaptables = {SlingHttpServletRequest.class},
         adapters = ArchiveModel.class,
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )
@@ -27,14 +27,17 @@ public class ArchiveModelImpl implements ArchiveModel {
 
 
     @Override
-    public List<String> getArchiveDates() {
+    public List<String> getArchiveDates(){
+        Set<String> archive = new HashSet<>();
         Resource r=resolver.resolve(blogpath);
-        Set<String> archive=new HashSet<>();
         Iterator<Resource> it=r.listChildren();
-        SimpleDateFormat sdf = new SimpleDateFormat("MMMMM yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMMM yyyy");
         while(it.hasNext()){
-            archive.add(sdf.format(it.next().getValueMap().get("jcr:created",Date.class)));
+            archive.add(dateFormat.format(it.next().getValueMap().get("jcr:created",Date.class)));
         }
         return new ArrayList<>(archive);
+    }
+    public String getBlogpath(){
+        return blogpath;
     }
 }

@@ -16,6 +16,7 @@ public class PublishedBlogsImpl implements PublishedBlogs {
     public void activate(PublishedBlogsConfiguration config){
         blogs=config.noOfBlogs();
     }
+
     @Override
     public int noOfBlogs() {
         return blogs;

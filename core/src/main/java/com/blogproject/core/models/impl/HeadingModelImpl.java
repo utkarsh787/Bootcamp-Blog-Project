@@ -19,13 +19,15 @@ import javax.jcr.Session;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-@Model(adaptables = SlingHttpServletRequest.class, adapters = HeadingModel.class, defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
+@Model(adaptables = SlingHttpServletRequest.class,
+        adapters = HeadingModel.class,
+        defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeadingModelImpl implements HeadingModel {
     @ScriptVariable
     private Page currentPage; // Fetches Page Properties
 
-    @SlingObject
-    private ResourceResolver resourceResolver;
+    @ScriptVariable
+    private ResourceResolver resolver;
 
     @ValueMapValue(name = "jcr:created")
     private Calendar created; // Fetches the Creation Date
@@ -35,14 +37,9 @@ public class HeadingModelImpl implements HeadingModel {
     public String getTitle() {
         return currentPage.getTitle();
     }
+
     @ValueMapValue(name = "jcr:createdBy")
     private String userId;
-    // Getter for Created By
-    @Override
-    public String getAuthorName() {
-        String createdBy=getLoggedInUserName();
-        return createdBy != null ? createdBy : "Unknown Author";
-    }
 
     // Getter for Created Date (Formatted)
     @Override
@@ -54,12 +51,19 @@ public class HeadingModelImpl implements HeadingModel {
         return "No Date Found";
     }
 
-    private String getLoggedInUserName() {
+    // Getter for Created By
+    @Override
+    public String getAuthorName() {
+        String createdBy=getUserName();
+        return createdBy != null ? createdBy : "Unknown Author";
+    }
+
+
+
+
+    private String getUserName() {
         try {
-          //  Session session = resourceResolver.adaptTo(Session.class);
-           // if (session != null) {
-              //  String userId = session.getUserID();
-                UserPropertiesManager upm = resourceResolver.adaptTo(UserPropertiesManager.class);
+                UserPropertiesManager upm = resolver.adaptTo(UserPropertiesManager.class);
                 if (upm != null) {
                     UserProperties userProperties = upm.getUserProperties(userId, UserPropertiesService.PROFILE_PATH);
                     if (userProperties != null) {

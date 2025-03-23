@@ -15,17 +15,15 @@
                     <properties
                             jcr:primaryType="nt:unstructured"
                             jcr:title="Properties"
-                            sling:resourceType="granite/ui/components/coral/foundation/container"
-                            margin="{Boolean}true">
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
                         <items jcr:primaryType="nt:unstructured">
-
                             <text
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="cq/gui/components/authoring/dialog/richtext"
                                     fieldLabel="Text"
                                     name="./text"
                                     useFixedInlineToolbar="{Boolean}true"
-                                      applyParagraphFormat="{Boolean}true">
+                                    >
                             </text>
                         </items>
                     </properties>

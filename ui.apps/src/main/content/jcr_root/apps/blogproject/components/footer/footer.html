@@ -18,12 +18,12 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12">
             <div class="footer__block">
-                <a href="${footer.link1}" aria-label="PwC office locations">HomePage</a>
-                <a href="${footer.link2}" aria-label="PwC office locations">Blogs</a>
+                <a href="${footer.link1 @ context='uri'}.html" >HomePage</a>
+                <a href="${footer.link2 @ context='uri'}.html" >Blogs</a>
             </div>
         </div>
     </div>
-    <p>© 2024 - 2025 TTN Bootcamp. All rights reserved.</p>
+    <p>© 2024 - ${footer.CurrentYear} TTN Bootcamp. All rights reserved.</p>
 </footer>
 
 

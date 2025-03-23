@@ -2,7 +2,7 @@
     <h4 class="font-italic">Archives</h4>
     <div data-sly-use.body="com.blogproject.core.models.ArchiveModel">
         <ol class="list-unstyled mb-0" data-sly-list="${body.archiveDates}">
-        <li><a href="index.html#">${item}</a></li>
+            <li> <a href="${body.blogpath @ context='uri'}.html?month=${item @ context='uri'}">${item}</a>
         </ol>
     </div>
 </div>

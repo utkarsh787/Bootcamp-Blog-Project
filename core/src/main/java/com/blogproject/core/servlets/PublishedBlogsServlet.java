@@ -26,7 +26,7 @@ import org.osgi.service.component.annotations.Reference;
 
 })
 public class PublishedBlogsServlet extends SlingAllMethodsServlet {
-//osgi service bas model main use hoti hai ....hum to srvlet main inject kr rhe hai
+//osgi service bas model main use hoti hai ....hum to servlet main inject kr rhe hai
     @Reference
     private PublishedBlogsService publishedBlogsService;
 

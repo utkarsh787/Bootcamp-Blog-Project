@@ -7,4 +7,4 @@
         jcr:title="Header"
         jcr:description="A header component with an authorable logo and menu items."
         componentGroup="Bootcamp Project Content"
-        sling:resourceSuperType="wcm/foundation/components/responsivegrid"/>
+       />

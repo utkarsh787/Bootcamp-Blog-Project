@@ -29,12 +29,15 @@ public class HeaderModelImpl implements HeaderModel {
     @ValueMapValue
     private String headerText;
 
-    @SlingObject
-    private Resource componentResource;
     @ValueMapValue
     private String logoAlt;
+
+    @SlingObject
+    private Resource componentResource;
+
     @ScriptVariable
     private ResourceResolver resolver;
+
     @Override
     public String getLogoAlt() {
         return logoAlt;
@@ -54,9 +57,9 @@ public class HeaderModelImpl implements HeaderModel {
 @Override
     public List<Map<String, String>> getNavigation() {
         List<Map<String, String>> navigationMap = new ArrayList<>();
-        Resource links = componentResource.getChild("navItems");
-        if (links != null) {
-            for (Resource r : links.getChildren()) {
+        Resource componentResourceChild = componentResource.getChild("navItems");
+        if (componentResourceChild != null) {
+            for (Resource r : componentResourceChild.getChildren()) {
                 String link=r.getValueMap().get("link", String.class);
                 Resource linkresource=resolver.resolve(link);
                 if((linkresource.adaptTo(Page.class).getProperties().get("hideInNav",String.class))==null) {
@@ -69,23 +72,5 @@ public class HeaderModelImpl implements HeaderModel {
         }
         return navigationMap;
     }
-//    @Override
-//    public List<Map<String, String>> getNavigation() {
-//        List<Map<String, String>> navigationMap = new ArrayList<>();
-//
-//        // Fetch the 'navItems' node containing multifield data
-//        Resource navItems = componentResource.getChild("navItems");
-//
-//        if (navItems != null) {
-//            for (Resource item : navItems.getChildren()) {
-//                Map<String, String> linkMap = new HashMap<>();
-//                linkMap.put("text", item.getValueMap().get("text", String.class));
-//                linkMap.put("link", item.getValueMap().get("link", String.class));
-//                navigationMap.add(linkMap);
-//            }
-//        }
-//
-//        return navigationMap;
-//    }
 }
 

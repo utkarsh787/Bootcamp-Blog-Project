@@ -12,7 +12,7 @@ import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import java.time.Year;
 
 @Model(
-        adaptables = {SlingHttpServletRequest.class, Resource.class},
+        adaptables = {SlingHttpServletRequest.class},
         adapters = FooterModel.class,
         resourceType = "blogproject/components/footer",
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
