@@ -67,7 +67,7 @@ public class HeadingModelImpl implements HeadingModel {
                 if (userPropertiesManager != null) {
                     UserProperties userProperties = userPropertiesManager.getUserProperties(userId, UserPropertiesService.PROFILE_PATH);
                     if (userProperties != null) {
-                        String fullName = (String) userProperties.getProperty("profile/fullName");
+                        String fullName = (String) userProperties.getDisplayName();
                         return (fullName != null && !fullName.isEmpty()) ? fullName : userId;
                     }
                 }
