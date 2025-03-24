@@ -46,7 +46,7 @@ public class PublishedBlogsServlet extends SlingAllMethodsServlet {
             String monthParam = request.getParameter("month");
             int limit = publishedBlogs.noOfBlogs();
             List<Map<String, String>> blogs = publishedBlogsService.getPublishedBlogs(currentPage, monthParam, limit);
-
+            //gson is java library created by google which is used to convert any object into json object
             Gson gson = new Gson();
             response.getWriter().write(gson.toJson(blogs));
         } else {

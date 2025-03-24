@@ -1,4 +1,4 @@
-package com.blogproject.core.services.Impl;
+package com.blogproject.core.config;
 
 
 import org.osgi.service.metatype.annotations.AttributeDefinition;

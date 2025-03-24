@@ -6,23 +6,23 @@ import com.adobe.granite.security.user.UserPropertiesService;
 import com.blogproject.core.models.HeadingModel;
 import com.day.cq.wcm.api.Page;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
-import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
-import javax.jcr.Session;
+
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
+import java.util.Date;
 
 @Model(adaptables = SlingHttpServletRequest.class,
         adapters = HeadingModel.class,
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL)
 public class HeadingModelImpl implements HeadingModel {
+
     @ScriptVariable
     private Page currentPage; // Fetches Page Properties
 
@@ -30,7 +30,7 @@ public class HeadingModelImpl implements HeadingModel {
     private ResourceResolver resolver;
 
     @ValueMapValue(name = "jcr:created")
-    private Calendar created; // Fetches the Creation Date
+    private Date created; // Fetches the Creation Date
 
     // Getter for Page Title
     @Override
@@ -45,8 +45,8 @@ public class HeadingModelImpl implements HeadingModel {
     @Override
     public String getCreatedDate() {
         if (created != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("MMMMM dd, yyyy");
-            return sdf.format(created.getTime());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMMMM dd, yyyy");
+            return dateFormat.format(created.getTime());
         }
         return "No Date Found";
     }
@@ -63,11 +63,10 @@ public class HeadingModelImpl implements HeadingModel {
 
     private String getUserName() {
         try {
-                UserPropertiesManager upm = resolver.adaptTo(UserPropertiesManager.class);
-                if (upm != null) {
-                    UserProperties userProperties = upm.getUserProperties(userId, UserPropertiesService.PROFILE_PATH);
+                UserPropertiesManager userPropertiesManager = resolver.adaptTo(UserPropertiesManager.class);
+                if (userPropertiesManager != null) {
+                    UserProperties userProperties = userPropertiesManager.getUserProperties(userId, UserPropertiesService.PROFILE_PATH);
                     if (userProperties != null) {
-                        // Fetch full name, if available; otherwise, fallback to userId
                         String fullName = (String) userProperties.getProperty("profile/fullName");
                         return (fullName != null && !fullName.isEmpty()) ? fullName : userId;
                     }

@@ -17,7 +17,7 @@ import com.blogproject.core.services.PublishedBlogsService;
 import java.util.*;
 
 @Model(
-        adaptables = {Resource.class, SlingHttpServletRequest.class},
+        adaptables = {SlingHttpServletRequest.class},
         adapters = ListOfBlogsModel.class,
         defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
 )

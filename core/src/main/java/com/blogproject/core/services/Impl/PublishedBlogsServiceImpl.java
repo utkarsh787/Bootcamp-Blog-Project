@@ -16,13 +16,13 @@ public class PublishedBlogsServiceImpl implements PublishedBlogsService {
     public List<Map<String, String>> getPublishedBlogs(Page currentPage, String monthFilter, int limit) {
         List<Map<String, String>> blogs = new ArrayList<>();
         Iterator<Page> childPages = currentPage.listChildren();
-        SimpleDateFormat sdf = new SimpleDateFormat("MMMMM yyyy");
-        SimpleDateFormat sdf2 = new SimpleDateFormat("MMM yyyy");
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("MMMMM yyyy");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("MMM yyyy");
 
         while (limit > 0 && childPages.hasNext()) {
             Page childPage = childPages.next();
             Date createdDate = childPage.getProperties().get("jcr:created", Date.class);
-            String formattedDate = sdf.format(createdDate);
+            String formattedDate = dateFormat1.format(createdDate);
 
             if (monthFilter!=null){
                 if(!formattedDate.equals(monthFilter)){
@@ -32,7 +32,7 @@ public class PublishedBlogsServiceImpl implements PublishedBlogsService {
 
             Map<String, String> blog = new HashMap<>();
             blog.put("Title", childPage.getTitle());
-            blog.put("Date", sdf2.format(createdDate));
+            blog.put("Date", dateFormat2.format(createdDate));
             blog.put("Img", getImagePath(childPage));
             blog.put("Link", childPage.getPath() + ".html");
             blog.put("SubHeading", childPage.getDescription() != null ? childPage.getDescription() : "No Description");

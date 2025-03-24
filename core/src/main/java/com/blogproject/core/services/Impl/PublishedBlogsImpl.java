@@ -1,6 +1,5 @@
 package com.blogproject.core.services.Impl;
-
-
+import com.blogproject.core.config.PublishedBlogsConfiguration;
 import com.blogproject.core.services.PublishedBlogs;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
